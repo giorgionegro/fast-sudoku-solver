@@ -178,7 +178,7 @@ bool solve() {
 
 
         // Hidden Singles really slow down the solver
-        if (count !=0 &&! modified && true)
+        if (count !=0 &&! modified && false)
         for (int16_t num = 1; num <= 9; num++) {
             // Check rows
             for (int16_t i = 0; i < 9; i++) {
@@ -209,9 +209,9 @@ bool solve() {
                 for (int16_t i = 0; i < 9; i++) {
                     if (board[i][j] == 0 && !(rowConstraint[i] & (1 << (num - 1))) && !(colConstraint[j] & (1 << (num - 1))) && !(boxConstraint[(i / 3) * 3 + (j / 3)] & (1 << (num - 1)))) {
                         if (possibleCell == -1) {
-                            possibleCell = i; // Found a candidate cell
+                            possibleCell = i;
                         } else {
-                            possibleCell = -1; // More than one candidate, break
+                            possibleCell = -1;
                             break;
                         }
                     }
