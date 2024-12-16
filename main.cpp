@@ -39,6 +39,7 @@ void loadBoard(const std::string &line) {
     }
 }
 
+int guess = 0;
 int main(int argc, char *argv[]) {
     if (argc < 2) { //TODO: write an argument parser to make it more usable from the command line
         std::cerr << "Usage: ./sudoku_solver <input_file>" << std::endl;
@@ -82,13 +83,13 @@ int main(int argc, char *argv[]) {
     }
     auto average = totalTime.count() / puzzles.size();
     std::cout << "puzzle per second: " << 1 / average << std::endl;
+    std::cout<< "guess per puzzle: " << guess/puzzles.size()  << std::endl;
 
     return 0;
 }
 
 
 std::priority_queue<std::pair<int, int>> cellQueue;
-
 
 
 int recursiveCount = 0;
@@ -124,10 +125,11 @@ bool recursiveSolver(int count, std::priority_queue<std::pair<int, int>> &pq, in
         boxConstraint[bestBox] |= (1 << (num - 1));
         board[bestRow * 9 + bestCol] = (1 << (num - 1));
 
+
         if (recursiveSolver(count + 1, pq, rowConstraint, colConstraint, boxConstraint)) {
             return true;
         }
-
+        guess++;
         // Backtrack: Restore constraints and board
         rowConstraint[bestRow] = oldRow;
         colConstraint[bestCol] = oldCol;
@@ -213,7 +215,7 @@ bool solve() {
                     }
             }
             if (error)
-                return false;
+                return false; //this slow down a bit the solution for good sudokus, it's a tradeoff
         }
 
 
