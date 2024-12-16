@@ -5,8 +5,6 @@
 #include <fstream>
 #include <bit>
 #include <chrono>
-#include <immintrin.h>  // For AVX2 intrinsics
-#include <bitset>
 #include <queue>
 
 // Sudoku solver constraints approach
