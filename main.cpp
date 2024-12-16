@@ -180,6 +180,7 @@ bool solve() {
             }
         }
     }
+    bool error = false;
     do {
         modified = false;
 
@@ -208,9 +209,13 @@ bool solve() {
                     zeroCount += mask;
                     //and set modified to True
                     modified |= mask;
+                    error |= -(constraint ==511);
                     }
             }
+            if (error)
+                return false;
         }
+
 
 
         /*  // Hidden Singles really slow down the solver
