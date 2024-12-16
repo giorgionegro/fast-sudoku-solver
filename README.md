@@ -12,3 +12,4 @@ A fast and efficient Sudoku solver for 9x9 matrices, optimized for speed and acc
    - Test and integrate the Dancing Links algorithm for solving.
 3. **File Output:**
    - Implement functionality to save the solved puzzles to an output file.
+4. **Manual Vectorization to harvest more preformance**
